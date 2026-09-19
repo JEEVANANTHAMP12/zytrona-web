@@ -41,6 +41,11 @@ export default defineConfig({
           } catch {
             // prerender output may not exist during incomplete builds
           }
+
+          // Ensure build process exits cleanly and does not hang on lingering worker/MessagePort handles
+          setTimeout(() => {
+            process.exit(0)
+          }, 100)
         },
       },
     },
